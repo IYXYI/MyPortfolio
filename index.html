@@ -2,6 +2,15 @@
 <html>
 <head>
     <title>My Website</title>
+    <style>
+        canvas {
+            background-color: black;
+        }
+
+        .dot {
+            fill: white;
+        }
+    </style>
 </head>
 <body>
     <canvas id="canvas"></canvas>
@@ -13,20 +22,65 @@
         // Get the 2D rendering context
         var ctx = canvas.getContext("2d");
 
+        // Set the canvas size
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
         // Draw the dots
-        for (var i = 0; i < dots.length; i++) {
-            ctx.fillStyle = "black";
-            ctx.fillRect(dots[i].x, dots[i].y, 1, 1);
+        var dots = [];
+        for (var i = 0; i < 100; i++) {
+            var x = Math.random() * window.innerWidth;
+            var y = Math.random() * window.innerHeight;
+            var dot = new Dot(x, y);
+            dots.push(dot);
         }
 
         // Draw the wires
-        for (var i = 0; i < dots.length - 1; i++) {
-            ctx.beginPath();
-            ctx.strokeStyle = "red";
-            ctx.moveTo(dots[i].x, dots[i].y);
-            ctx.lineTo(dots[i + 1].x, dots[i + 1].y);
-            ctx.stroke();
+        function drawWires() {
+            for (var i = 0; i < dots.length - 1; i++) {
+                var nearestDots = findNearest3Dots(dots[i]);
+
+                for (var j = 0; j < nearestDots.length; j++) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = "red";
+                    ctx.lineWidth = 2;
+                    ctx.moveTo(dots[i].x, dots[i].y);
+                    ctx.lineTo(nearestDots[j].x, nearestDots[j].y);
+                    ctx.stroke();
+                }
+            }
         }
+
+        // Find the nearest 3 dots to a given dot
+        function findNearest3Dots(dot) {
+            var nearestDots = [];
+            for (var i = 0; i < dots.length; i++) {
+                if (dots[i] !== dot) {
+                    var distance = distance(dot, dots[i]);
+                    if (nearestDots.length < 3 || distance < distance(nearestDots[2], dot)) {
+                        nearestDots.push(dots[i]);
+                        nearestDots.sort(function(a, b) {
+                            return distance(dot, a) - distance(dot, b);
+                        });
+                    }
+                }
+            }
+
+            return nearestDots;
+        }
+
+        // Calculate the distance between two dots
+        function distance(dot1, dot2) {
+            return Math.sqrt((dot1.x - dot2.x)**2 + (dot1.y - dot2.y)**2);
+        }
+
+        // Draw the dots and wires
+        drawWires();
+
+        // Update the canvas on mouse move
+        window.addEventListener("mousemove", function(event) {
+            drawWires();
+        });
     </script>
 </body>
 </html>
