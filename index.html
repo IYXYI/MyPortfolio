@@ -4,6 +4,29 @@
     <title>My Website</title>
 </head>
 <body>
-    <h1>Welcome to my website!</h1>
+    <canvas id="canvas"></canvas>
+
+    <script>
+        // Get the canvas element
+        var canvas = document.getElementById("canvas");
+
+        // Get the 2D rendering context
+        var ctx = canvas.getContext("2d");
+
+        // Draw the dots
+        for (var i = 0; i < dots.length; i++) {
+            ctx.fillStyle = "black";
+            ctx.fillRect(dots[i].x, dots[i].y, 1, 1);
+        }
+
+        // Draw the wires
+        for (var i = 0; i < dots.length - 1; i++) {
+            ctx.beginPath();
+            ctx.strokeStyle = "red";
+            ctx.moveTo(dots[i].x, dots[i].y);
+            ctx.lineTo(dots[i + 1].x, dots[i + 1].y);
+            ctx.stroke();
+        }
+    </script>
 </body>
 </html>
