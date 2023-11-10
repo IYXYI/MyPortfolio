@@ -36,14 +36,20 @@ def index():
     # Get the current mouse position
     mouse_x = request.args.get("mouse_x")
     mouse_y = request.args.get("mouse_y")
-
+    
+    # In the index.html template
+    canvas.fillStyle = "black";
+    
+    # In the index.js script
+    ctx.fillStyle = "white";
+    
     # Find the nearest 3 dots to the mouse position
     nearest_dots = find_nearest_3_dots((mouse_x, mouse_y))
 
     # Draw wires between the nearest 3 dots
     for i in range(len(nearest_dots) - 1):
         draw_wire(nearest_dots[i], nearest_dots[i + 1])
-
+    
     # Render the HTML template
     return render_template("index.html", dots=dots)
 if __name__ == "__main__":
