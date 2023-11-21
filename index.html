@@ -25,6 +25,15 @@
     <script>
         const starsContainer = document.getElementById('stars');
 
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
         function createStar(x, y) {
             const star = document.createElement('div');
             star.classList.add('star');
@@ -61,6 +70,21 @@
                 if (parseFloat(star.style.top) < 0) {
                     star.style.top = `${window.innerHeight}px`;
                 }
+
+                // Check for collisions and change color
+                stars.forEach(otherStar => {
+                    if (star !== otherStar) {
+                        const distance = Math.sqrt(
+                            Math.pow(parseFloat(star.style.left) - parseFloat(otherStar.style.left), 2) +
+                            Math.pow(parseFloat(star.style.top) - parseFloat(otherStar.style.top), 2)
+                        );
+
+                        if (distance < 5) { // Adjust the distance for collision
+                            star.style.backgroundColor = getRandomColor();
+                            otherStar.style.backgroundColor = getRandomColor();
+                        }
+                    }
+                });
             });
 
             requestAnimationFrame(moveStars);
