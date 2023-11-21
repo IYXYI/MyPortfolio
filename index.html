@@ -76,24 +76,20 @@
         }
 
         function moveStars() {
-            const stars = document.querySelectorAll('.star');
+    const stars = document.querySelectorAll('.star');
 
-            stars.forEach(star => {
-                const newX = parseFloat(star.style.left) + (Math.random() - 0.5) * 2;
-                const newY = parseFloat(star.style.top) + (Math.random() - 0.5) * 2;
+    stars.forEach(star => {
+        const newX = parseFloat(star.style.left) + (Math.random() - 0.5) * 2;
+        const newY = parseFloat(star.style.top) + (Math.random() - 0.5) * 2;
 
-                star.style.left = `${newX}px`;
-                star.style.top = `${newY}px`;
-            });
+        // Ensure stars stay within the window boundaries
+        star.style.left = `${Math.max(0, Math.min(window.innerWidth, newX))}px`;
+        star.style.top = `${Math.max(0, Math.min(window.innerHeight, newY))}px`;
+    });
 
-            requestAnimationFrame(moveStars);
-        }
+    requestAnimationFrame(moveStars);
+}
 
-        for (let i = 0; i < 50; i++) {
-            const x = Math.random() * window.innerWidth;
-            const y = Math.random() * window.innerHeight;
-            createStar(x, y);
-        }
 
         document.addEventListener('mousemove', handleMouseMove);
 
