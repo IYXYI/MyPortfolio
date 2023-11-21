@@ -3,25 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Electrical Circuit</title>
+    <title>Random Electrical Components</title>
     <style>
         body {
             background-color: black;
             margin: 0;
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             height: 100vh;
         }
 
-        #circuit {
+        .component {
             stroke: white;
             stroke-width: 2;
             fill: none;
         }
 
-        #resistor {
+        .resistor {
+            fill: none;
+            stroke: white;
+            stroke-width: 2;
+        }
+
+        .capacitor {
             fill: none;
             stroke: white;
             stroke-width: 2;
@@ -29,20 +32,32 @@
     </style>
 </head>
 <body>
-    <svg id="circuit" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-        <!-- Example circuit components -->
-        <line x1="20" y1="50" x2="30" y2="50" id="circuit"/>
-        <line x1="30" y1="50" x2="40" y2="30" id="circuit"/>
-        <line x1="40" y1="30" x2="60" y2="70" id="circuit"/>
-        <line x1="60" y1="70" x2="80" y2="30" id="circuit"/>
-        <line x1="80" y1="30" x2="90" y2="50" id="circuit"/>
-        
-        <!-- Example resistor -->
-        <rect x="45" y="40" width="10" height="20" id="resistor"/>
-    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+        <!-- Randomly placed resistors and capacitors -->
+        <script>
+            function getRandomPosition() {
+                const x = Math.random() * 90;
+                const y = Math.random() * 90;
+                return { x, y };
+            }
 
-    <script>
-        // You can add JavaScript logic here if needed
-    </script>
+            for (let i = 0; i < 20; i++) {
+                const position = getRandomPosition();
+                const isResistor = Math.random() > 0.5;
+
+                if (isResistor) {
+                    // Resistor
+                    document.write(`
+                        <rect x="${position.x}" y="${position.y}" width="5" height="20" class="resistor"/>
+                    `);
+                } else {
+                    // Capacitor
+                    document.write(`
+                        <circle cx="${position.x}" cy="${position.y}" r="3" class="capacitor"/>
+                    `);
+                }
+            }
+        </script>
+    </svg>
 </body>
 </html>
