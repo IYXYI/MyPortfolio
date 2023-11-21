@@ -5,9 +5,11 @@
     <style>
         body {
             background-color: black;
+            margin: 0;
+            overflow: hidden;
         }
 
-        .dot {
+        .star {
             position: absolute;
             width: 5px;
             height: 5px;
@@ -18,27 +20,49 @@
     </style>
 </head>
 <body>
-    <div id="dots"></div>
+    <div id="stars"></div>
 
     <script>
-        // Get the dots container
-        const dotsContainer = document.getElementById('dots');
+        // Get the stars container
+        const starsContainer = document.getElementById('stars');
 
-        // Handle mouse click events
-        document.addEventListener('click', function(event) {
-            // Get the click coordinates
-            const x = event.clientX;
-            const y = event.clientY;
+        // Function to create a new star
+        function createStar(x, y) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.left = `${x}px`;
+            star.style.top = `${y}px`;
+            starsContainer.appendChild(star);
+        }
 
-            // Create a new dot element
-            const dot = document.createElement('div');
-            dot.classList.add('dot');
-            dot.style.left = `${x}px`;
-            dot.style.top = `${y}px`;
+        // Function to remove a star
+        function removeStar(star) {
+            starsContainer.removeChild(star);
+        }
 
-            // Add the dot to the container
-            dotsContainer.appendChild(dot);
-        });
+        // Function to handle mouse move events
+        function handleMouseMove(event) {
+            // Get the mouse coordinates
+            const mouseX = event.clientX;
+            const mouseY = event.clientY;
+
+            // Check if the mouse is over a star
+            const starUnderCursor = document.elementFromPoint(mouseX, mouseY);
+            
+            if (starUnderCursor && starUnderCursor.classList.contains('star')) {
+                removeStar(starUnderCursor);
+            }
+        }
+
+        // Add stars on the page load
+        for (let i = 0; i < 50; i++) {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            createStar(x, y);
+        }
+
+        // Add mouse move event listener
+        document.addEventListener('mousemove', handleMouseMove);
     </script>
 </body>
 </html>
