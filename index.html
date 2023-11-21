@@ -17,87 +17,52 @@
             border-radius: 50%;
             box-shadow: 0 0 2px white;
         }
-
-        .firework {
-            position: absolute;
-            width: 5px;
-            height: 5px;
-            background-color: red;
-            border-radius: 50%;
-            animation: explode 0.5s ease-out;
-        }
-
-        @keyframes explode {
-            0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(3); opacity: 0; }
-        }
     </style>
 </head>
 <body>
     <div id="stars"></div>
 
     <script>
+        // Get the stars container
         const starsContainer = document.getElementById('stars');
 
+        // Function to create a new star
         function createStar(x, y) {
             const star = document.createElement('div');
             star.classList.add('star');
             star.style.left = `${x}px`;
             star.style.top = `${y}px`;
             starsContainer.appendChild(star);
-            return star;
         }
 
+        // Function to remove a star
         function removeStar(star) {
             starsContainer.removeChild(star);
         }
 
-        function createFirework(x, y) {
-            const firework = document.createElement('div');
-            firework.classList.add('firework');
-            firework.style.left = `${x}px`;
-            firework.style.top = `${y}px`;
-            starsContainer.appendChild(firework);
-            setTimeout(() => {
-                removeStar(firework);
-            }, 500);
-        }
-
+        // Function to handle mouse move events
         function handleMouseMove(event) {
+            // Get the mouse coordinates
             const mouseX = event.clientX;
             const mouseY = event.clientY;
 
+            // Check if the mouse is over a star
             const starUnderCursor = document.elementFromPoint(mouseX, mouseY);
-
+            
             if (starUnderCursor && starUnderCursor.classList.contains('star')) {
-                createFirework(mouseX, mouseY);
                 removeStar(starUnderCursor);
             }
         }
 
-        function moveStars() {
-    const stars = document.querySelectorAll('.star');
+        // Add stars on the page load
+        for (let i = 0; i < 50; i++) {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            createStar(x, y);
+        }
 
-    stars.forEach(star => {
-        const currentX = parseFloat(star.style.left) || 0;
-        const currentY = parseFloat(star.style.top) || 0;
-
-        const newX = currentX + (Math.random() - 0.5) * 2;
-        const newY = currentY + (Math.random() - 0.5) * 2;
-
-        // Ensure stars stay within the window boundaries
-        star.style.left = `${Math.max(0, Math.min(window.innerWidth, newX))}px`;
-        star.style.top = `${Math.max(0, Math.min(window.innerHeight, newY))}px`;
-    });
-
-    requestAnimationFrame(moveStars);
-}
-
-
+        // Add mouse move event listener
         document.addEventListener('mousemove', handleMouseMove);
-
-        // Start the animation loop
-        moveStars();
     </script>
 </body>
 </html>
