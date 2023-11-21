@@ -1,1 +1,105 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Website</title>
+    <style>
+        body {
+            background-color: black;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 0 3px white;
+        }
+    </style>
+</head>
+<body>
+    <div id="stars"></div>
+
+    <script>
+        const starsContainer = document.getElementById('stars');
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function createStar(x, y) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.left = `${x}px`;
+            star.style.top = `${y}px`;
+            star.velocity = {
+                x: (Math.random() - 0.5) * 2,
+                y: (Math.random() - 0.5) * 2
+            };
+            starsContainer.appendChild(star);
+            return star;
+        }
+
+        function moveStars() {
+            const stars = document.querySelectorAll('.star');
+
+            stars.forEach(star => {
+                star.style.left = `${parseFloat(star.style.left) + star.velocity.x}px`;
+                star.style.top = `${parseFloat(star.style.top) + star.velocity.y}px`;
+
+                // Wrap stars around the screen
+                if (parseFloat(star.style.left) > window.innerWidth) {
+                    star.style.left = '0px';
+                }
+
+                if (parseFloat(star.style.left) < 0) {
+                    star.style.left = `${window.innerWidth}px`;
+                }
+
+                if (parseFloat(star.style.top) > window.innerHeight) {
+                    star.style.top = '0px';
+                }
+
+                if (parseFloat(star.style.top) < 0) {
+                    star.style.top = `${window.innerHeight}px`;
+                }
+
+                // Check for collisions and change color
+                stars.forEach(otherStar => {
+                    if (star !== otherStar) {
+                        const distance = Math.sqrt(
+                            Math.pow(parseFloat(star.style.left) - parseFloat(otherStar.style.left), 2) +
+                            Math.pow(parseFloat(star.style.top) - parseFloat(otherStar.style.top), 2)
+                        );
+
+                        if (distance < 5) { // Adjust the distance for collision
+                            star.style.backgroundColor = getRandomColor();
+                            otherStar.style.backgroundColor = getRandomColor();
+                        }
+                    }
+                });
+            });
+
+            requestAnimationFrame(moveStars);
+        }
+
+        // Add stars on the page load
+        for (let i = 0; i < 90; i++) {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            createStar(x, y);
+        }
+
+        // Start the animation loop
+        moveStars();
+    </script>
+</body>
+</html>
