@@ -16,7 +16,6 @@
             background-color: white;
             border-radius: 50%;
             box-shadow: 0 0 2px white;
-            transition: transform 0.3s;
         }
     </style>
 </head>
@@ -25,37 +24,24 @@
 
     <script>
         const starsContainer = document.getElementById('stars');
-        const explosionDistance = 50; // Adjust the distance for explosion effect
 
         function createStar(x, y) {
             const star = document.createElement('div');
             star.classList.add('star');
             star.style.left = `${x}px`;
             star.style.top = `${y}px`;
+            star.velocity = {
+                x: (Math.random() - 0.5) * 2,
+                y: (Math.random() - 0.5) * 2
+            };
             starsContainer.appendChild(star);
             return star;
         }
 
-        function moveStars(event) {
+        function moveStars() {
             const stars = document.querySelectorAll('.star');
 
             stars.forEach(star => {
-                const mouseX = event.clientX;
-                const mouseY = event.clientY;
-
-                const distance = Math.sqrt(
-                    Math.pow(parseFloat(star.style.left) - mouseX, 2) +
-                    Math.pow(parseFloat(star.style.top) - mouseY, 2)
-                );
-
-                if (distance < explosionDistance) {
-                    // Scale up the star for explosion effect
-                    star.style.transform = 'scale(1.5)';
-                } else {
-                    // Reset the scale
-                    star.style.transform = 'scale(1)';
-                }
-
                 star.style.left = `${parseFloat(star.style.left) + star.velocity.x}px`;
                 star.style.top = `${parseFloat(star.style.top) + star.velocity.y}px`;
 
@@ -77,7 +63,7 @@
                 }
             });
 
-            requestAnimationFrame((event) => moveStars(event));
+            requestAnimationFrame(moveStars);
         }
 
         // Add stars on the page load
