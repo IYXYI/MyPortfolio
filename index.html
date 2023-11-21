@@ -36,7 +36,7 @@
             return star;
         }
 
-        function moveStars() {
+        function moveStars(event) {
             const stars = document.querySelectorAll('.star');
 
             stars.forEach(star => {
@@ -77,7 +77,7 @@
                 }
             });
 
-            requestAnimationFrame(moveStars);
+            requestAnimationFrame((event) => moveStars(event));
         }
 
         // Add stars on the page load
