@@ -23,35 +23,29 @@
     <div id="stars"></div>
 
     <script>
-        // Get the stars container
         const starsContainer = document.getElementById('stars');
 
-        // Function to create a new star
         function createStar(x, y) {
             const star = document.createElement('div');
             star.classList.add('star');
             star.style.left = `${x}px`;
             star.style.top = `${y}px`;
             starsContainer.appendChild(star);
+            return star;
         }
 
-        // Function to remove a star
-        function removeStar(star) {
-            starsContainer.removeChild(star);
-        }
+        function moveStars() {
+            const stars = document.querySelectorAll('.star');
 
-        // Function to handle mouse move events
-        function handleMouseMove(event) {
-            // Get the mouse coordinates
-            const mouseX = event.clientX;
-            const mouseY = event.clientY;
+            stars.forEach(star => {
+                const newX = parseFloat(star.style.left) + (Math.random() - 0.5) * 2;
+                const newY = parseFloat(star.style.top) + (Math.random() - 0.5) * 2;
 
-            // Check if the mouse is over a star
-            const starUnderCursor = document.elementFromPoint(mouseX, mouseY);
-            
-            if (starUnderCursor && starUnderCursor.classList.contains('star')) {
-                removeStar(starUnderCursor);
-            }
+                star.style.left = `${newX}px`;
+                star.style.top = `${newY}px`;
+            });
+
+            requestAnimationFrame(moveStars);
         }
 
         // Add stars on the page load
@@ -61,8 +55,8 @@
             createStar(x, y);
         }
 
-        // Add mouse move event listener
-        document.addEventListener('mousemove', handleMouseMove);
+        // Start the animation loop
+        moveStars();
     </script>
 </body>
 </html>
