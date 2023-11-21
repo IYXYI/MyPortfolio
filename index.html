@@ -8,6 +8,7 @@
             margin: 0;
             overflow: hidden;
             color: white; /* Set text color to white */
+            font-family: Calibri, sans-serif; /* Set font to Calibri */
         }
 
         .star {
@@ -31,15 +32,13 @@
     </style>
 </head>
 <body>
-    <span style="color:white">Hello, I'm</span>
+    <span style="color:white; font-family: Calibri, sans-serif;">Hello, I'm</span>
     <br>
-    "Nabil DRISSI EL BOUZAIDI"
+    <span style="color:white; font-family: Calibri, sans-serif;">"Nabil DRISSI EL BOUZAIDI"</span>
     
     <span class="wave" role="img" aria-label="karthik says hi">👋</span>
 
     <script>
-        const starsContainer = document.getElementById('stars');
-
         function getRandomColor() {
             const letters = '0123456789ABCDEF';
             let color = '#';
@@ -58,7 +57,7 @@
                 x: (Math.random() - 0.5) * 2,
                 y: (Math.random() - 0.5) * 2
             };
-            starsContainer.appendChild(star);
+            document.body.appendChild(star);
             return star;
         }
 
