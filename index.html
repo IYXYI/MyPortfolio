@@ -60,24 +60,13 @@
       color: white;
     }
 
-    .moving-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 24px;
-            white-space: nowrap;
-            animation: moveText 10s linear infinite;
-        }
-
-        @keyframes moveText {
-            0% {
-                transform: translate(-50%, -50%) translateX(0);
-            }
-            100% {
-                transform: translate(-50%, -50%) translateX(calc(-100% + 100vw));
-            }
-        }
+ .moving-text {
+      position: absolute;
+      font-size: 24px;
+      font-family: Arial, sans-serif;
+      color: white;
+      opacity: 0.7;
+    }
     
   </style>
 </head>
@@ -95,11 +84,29 @@
       <a href="https://github.com/IYXYI" target="_blank"><img class="logo" src="data:image/png;base64,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" alt="Github"></a>
     </span>
   </div>
-  <div class="moving-text">
-        Can you imagine what would happen if two stars collided?
-    </div>
+  <div class="moving-text" id="text">Can you imagine what would happen if two stars collided?</div>
+
 
   <script>
+    function moveText() {
+      const text = document.getElementById('text');
+      const maxX = window.innerWidth - text.clientWidth;
+      const maxY = window.innerHeight - text.clientHeight;
+
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+
+      text.style.left = `${randomX}px`;
+      text.style.top = `${randomY}px`;
+    }
+
+    function setRandomPosition() {
+      moveText();
+      setInterval(moveText, 5000); // Change position every 5 seconds
+    }
+
+    
+    
     function getRandomColor() {
       const letters = '0123456789ABCDEF';
       let color = '#';
@@ -164,6 +171,7 @@
 
       requestAnimationFrame(moveStars);
     }
+    
 
     // Add stars on the page load
     for (let i = 0; i < 90; i++) {
@@ -174,6 +182,7 @@
 
     // Start the animation loop
     moveStars();
+    setRandomPosition();
   </script>
 </body>
 
