@@ -39,15 +39,43 @@
     </style>
 </head>
 <body>
-    <div id="title-container">
-        <span id="hello-im">Hello, I'm</span>
-        <br>
-        <span id="title">Nabil DRISSI EL BOUZAIDI</span>
-        
-        <span class="wave" role="img" aria-label="karthik says hi" style="font-size: 2em;">👋</span>
-    </div>
+  <div id="title-container">
+    <span id="hello-im">Hello, I'm </span>
+    <br>
+    <span id="title">Nabil DRISSI EL BOUZAIDI 👋</span>
+    <span class="wave" role="img" aria-label="karthik says hi" style="font-size: 2em;">👋</span>
+  </div>
 
     <script>
+        let isWriting = true;
+        let dotIndex = 0;
+    
+        function updateText() {
+          const titleElement = document.getElementById('title');
+          const text = titleElement.textContent;
+          if (isWriting) {
+            if (dotIndex < text.length) {
+              const updatedText = text.slice(0, dotIndex);
+              titleElement.textContent = updatedText;
+              dotIndex++;
+              setTimeout(updateText, 100); // Pause for 0.1 seconds
+            } else {
+              isWriting = false;
+              setTimeout(() => {
+                dotIndex = 0;
+                updateText();
+              }, 500); // Pause for 0.5 seconds after completing the text to show the final dot
+            }
+          } else {
+            dotIndex = 0;
+            setTimeout(() => {
+              updateText();
+            }, 100); // Start over after a short delay
+          }
+        }
+
+        
+        
         function getRandomColor() {
             const letters = '0123456789ABCDEF';
             let color = '#';
@@ -122,6 +150,7 @@
 
         // Start the animation loop
         moveStars();
+        updateText();
     </script>
 </body>
 </html>
