@@ -33,6 +33,7 @@
       font-size: 2.5em; /* Increase font size */
       color: white; /* Set text color to white */
     }
+    
     #myRol {
       font-size: 2.3em; /* Increase font size */
       color: white; /* Set text color to white */
@@ -45,6 +46,13 @@
 
     .wave {
       font-size: 2em;
+    }
+
+    .logo {
+      width: 30px; /* Set the width of the logos */
+      height: 30px; /* Set the height of the logos */
+      margin: 0 5px; /* Adjust margin for spacing */
+      cursor: pointer;
     }
     
     /* Add this style to make "Software Engineer" white */
@@ -60,87 +68,89 @@
     <br>
     <span id="title">Nabil DRISSI EL BOUZAIDI <span class="wave" role="img" aria-label="karthik says hi">👋</span></span>
     <br>
-    <span id="myRol"> Software Engineer </span>
+    <span id="myRol"> Software Engineer
+      <a href="https://www.linkedin.com/in/your-linkedin-profile" target="_blank"><img class="logo" src="linkedin-logo.png" alt="LinkedIn"></a>
+      <a href="mailto:your-email@gmail.com" target="_blank"><img class="logo" src="gmail-logo.png" alt="Gmail"></a>
+      <a href="https://github.com/your-github-username" target="_blank"><img class="logo" src="github-logo.png" alt="GitHub"></a>
+    </span>
   </div>
 
-    <script>
-        
-        
-        
-        function getRandomColor() {
-            const letters = '0123456789ABCDEF';
-            let color = '#';
-            for (let i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
+  <script>
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    function createStar(x, y) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.left = `${x}px`;
+      star.style.top = `${y}px`;
+      star.velocity = {
+        x: (Math.random() - 0.5) * 2,
+        y: (Math.random() - 0.5) * 2
+      };
+      document.body.appendChild(star);
+      return star;
+    }
+
+    function moveStars() {
+      const stars = document.querySelectorAll('.star');
+
+      stars.forEach(star => {
+        star.style.left = `${parseFloat(star.style.left) + star.velocity.x}px`;
+        star.style.top = `${parseFloat(star.style.top) + star.velocity.y}px`;
+
+        // Wrap stars around the screen
+        if (parseFloat(star.style.left) > window.innerWidth) {
+          star.style.left = '0px';
+        }
+
+        if (parseFloat(star.style.left) < 0) {
+          star.style.left = `${window.innerWidth}px`;
+        }
+
+        if (parseFloat(star.style.top) > window.innerHeight) {
+          star.style.top = '0px';
+        }
+
+        if (parseFloat(star.style.top) < 0) {
+          star.style.top = `${window.innerHeight}px`;
+        }
+
+        // Check for collisions and change color
+        stars.forEach(otherStar => {
+          if (star !== otherStar) {
+            const distance = Math.sqrt(
+              Math.pow(parseFloat(star.style.left) - parseFloat(otherStar.style.left), 2) +
+              Math.pow(parseFloat(star.style.top) - parseFloat(otherStar.style.top), 2)
+            );
+
+            if (distance < 5) { // Adjust the distance for collision
+              star.style.backgroundColor = getRandomColor();
+              otherStar.style.backgroundColor = getRandomColor();
             }
-            return color;
-        }
+          }
+        });
+      });
 
-        function createStar(x, y) {
-            const star = document.createElement('div');
-            star.classList.add('star');
-            star.style.left = `${x}px`;
-            star.style.top = `${y}px`;
-            star.velocity = {
-                x: (Math.random() - 0.5) * 2,
-                y: (Math.random() - 0.5) * 2
-            };
-            document.body.appendChild(star);
-            return star;
-        }
+      requestAnimationFrame(moveStars);
+    }
 
-        function moveStars() {
-            const stars = document.querySelectorAll('.star');
+    // Add stars on the page load
+    for (let i = 0; i < 90; i++) {
+      const x = Math.random() * window.innerWidth;
+      const y = Math.random() * window.innerHeight;
+      createStar(x, y);
+    }
 
-            stars.forEach(star => {
-                star.style.left = `${parseFloat(star.style.left) + star.velocity.x}px`;
-                star.style.top = `${parseFloat(star.style.top) + star.velocity.y}px`;
-
-                // Wrap stars around the screen
-                if (parseFloat(star.style.left) > window.innerWidth) {
-                    star.style.left = '0px';
-                }
-
-                if (parseFloat(star.style.left) < 0) {
-                    star.style.left = `${window.innerWidth}px`;
-                }
-
-                if (parseFloat(star.style.top) > window.innerHeight) {
-                    star.style.top = '0px';
-                }
-
-                if (parseFloat(star.style.top) < 0) {
-                    star.style.top = `${window.innerHeight}px`;
-                }
-
-                // Check for collisions and change color
-                stars.forEach(otherStar => {
-                    if (star !== otherStar) {
-                        const distance = Math.sqrt(
-                            Math.pow(parseFloat(star.style.left) - parseFloat(otherStar.style.left), 2) +
-                            Math.pow(parseFloat(star.style.top) - parseFloat(otherStar.style.top), 2)
-                        );
-
-                        if (distance < 5) { // Adjust the distance for collision
-                            star.style.backgroundColor = getRandomColor();
-                            otherStar.style.backgroundColor = getRandomColor();
-                        }
-                    }
-                });
-            });
-
-            requestAnimationFrame(moveStars);
-        }
-
-        // Add stars on the page load
-        for (let i = 0; i < 90; i++) {
-            const x = Math.random() * window.innerWidth;
-            const y = Math.random() * window.innerHeight;
-            createStar(x, y);
-        }
-
-        // Start the animation loop
-        moveStars();
-    </script>
+    // Start the animation loop
+    moveStars();
+  </script>
 </body>
+
 </html>
