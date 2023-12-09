@@ -194,17 +194,22 @@
       const apiKey = 'lyq1e6YElJyz99Ka3SoemQ==yfswowCVoq38JyX9'; // Replace with your actual API key
 
       $.ajax({
-        method: 'GET',
-        url: `https://api.api-ninjas.com/v1/quotes?category=${category}`,
-        headers: { 'X-Api-Key': apiKey },
-        contentType: 'application/json',
-        success: function(result) {
-          const quoteText = result && result.length > 0 ? result[0].text : 'No quote available';
+      method: 'GET',
+      url: `https://api.api-ninjas.com/v1/quotes?category=${category}`,
+      headers: { 'X-Api-Key': apiKey },
+      contentType: 'application/json',
+      success: function(result) {
+        if (result && result.length > 0) {
+          const quoteText = result[0]?.content || 'No quote available';
           document.getElementById('quote').innerText = quoteText;
-        },
-        error: function ajaxError(jqXHR) {
-          console.error('Error: ', jqXHR.responseText);
+        } else {
+          document.getElementById('quote').innerText = 'No quote available';
         }
+      },
+      error: function ajaxError(jqXHR, textStatus, errorThrown) {
+        console.error('Error: ', textStatus, errorThrown);
+        document.getElementById('quote').innerText = 'Failed to fetch quote';
+      }
       });
     }
     
