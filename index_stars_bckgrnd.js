@@ -6,7 +6,7 @@ let stars = [];
 const STAR_COUNT = 120;
 const STAR_COLOR = '#ccd6f6';
 const STAR_SIZE = 1.2;
-const STAR_SPEED = 0.45;
+const STAR_SPEED = 1.2;
 
 function resizeCanvas() {
   canvas.width = window.innerWidth;
@@ -20,7 +20,7 @@ function createStars() {
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
       size: Math.random() * STAR_SIZE + 0.2,
-      speed: Math.random() * STAR_SPEED + 0.05
+  speed: Math.random() * STAR_SPEED + 0.7
     });
   }
 }
