@@ -7,8 +7,8 @@
   align-items: center;
 }
 .skills-logos img {
-  width: 34px;
-  height: 34px;
+  width: 26px;
+  height: 26px;
   object-fit: contain;
   background: #fff;
   border-radius: 8px;
@@ -22,8 +22,8 @@
 
 /* Company logos in experience */
 .company-logo {
-  width: 38px;
-  height: 38px;
+  width: 28px;
+  height: 28px;
   object-fit: contain;
   margin-right: 0.7rem;
   vertical-align: middle;
@@ -35,7 +35,25 @@
 .exp-block {
   display: flex;
   align-items: flex-start;
-  gap: 0.7rem;
+  gap: 0.5rem;
+@media (max-width: 600px) {
+  .skills-logos {
+    gap: 0.4rem;
+  }
+  .skills-logos img {
+    width: 20px;
+    height: 20px;
+    padding: 1px;
+  }
+  .company-logo {
+    width: 18px;
+    height: 18px;
+    margin-right: 0.3rem;
+  }
+  .exp-block {
+    gap: 0.3rem;
+  }
+}
   margin-bottom: 1.2rem;
 }
 .exp-block h3 {

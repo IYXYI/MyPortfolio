@@ -160,7 +160,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script>
-
     // Sidebar toggle for mobile
     document.getElementById('sidebarToggle').onclick = function() {
       document.getElementById('sidebar').classList.toggle('collapsed');
@@ -189,7 +188,6 @@
       }
     });
 
-
     // Fade-in effect for sections
     if (!window._sectionObserver) {
       window._sectionObserver = new IntersectionObserver((entries) => {
@@ -206,55 +204,9 @@
     });
 
     // Interactive skill hover
-    document.addEventListener('DOMContentLoaded', function() {
-      document.querySelectorAll('#skills li').forEach(li => {
-        li.addEventListener('mouseenter', () => li.classList.add('skill-pop'));
-        li.addEventListener('mouseleave', () => li.classList.remove('skill-pop'));
-      });
-    });
-  </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-  <script>
-    // Animated typing effect for intro
-    document.addEventListener('DOMContentLoaded', function() {
-      if (window.Typed) {
-        new Typed('#typed-intro', {
-          strings: [
-            'A passionate Software Engineer.',
-            'Web, Backend, and DevOps specialist.',
-            'I love building beautiful, scalable solutions.'
-          ],
-          typeSpeed: 38,
-          backSpeed: 22,
-          backDelay: 1200,
-          loop: true,
-          showCursor: true
-        });
-      } else {
-        document.getElementById('typed-intro').textContent = 'A passionate Software Engineer.';
-      }
-    });
-
-    // Fade-in effect for sections
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('fade-in');
-        }
-      });
-    }, { threshold: 0.15 });
-    document.querySelectorAll('main section').forEach(section => {
-      section.classList.add('fade-init');
-      observer.observe(section);
-    });
-
-    // Interactive skill hover
-    document.addEventListener('DOMContentLoaded', function() {
-      document.querySelectorAll('#skills li').forEach(li => {
-        li.addEventListener('mouseenter', () => li.classList.add('skill-pop'));
-        li.addEventListener('mouseleave', () => li.classList.remove('skill-pop'));
-      });
+    document.querySelectorAll('#skills li').forEach(li => {
+      li.addEventListener('mouseenter', () => li.classList.add('skill-pop'));
+      li.addEventListener('mouseleave', () => li.classList.remove('skill-pop'));
     });
   </script>
 </body>
