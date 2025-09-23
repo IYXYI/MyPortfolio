@@ -1,55 +1,64 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  color: white;
-  background: black;
-  overflow-x: hidden;
+
+// Animated star background for the canvas
+const canvas = document.getElementById('index_stars_bckgrnd');
+const ctx = canvas.getContext('2d');
+let stars = [];
+const STAR_COUNT = 120;
+const STAR_COLOR = '#ccd6f6';
+const STAR_SIZE = 1.2;
+const STAR_SPEED = 0.15;
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 }
 
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1; /* stays behind everything */
+function createStars() {
+  stars = [];
+  for (let i = 0; i < STAR_COUNT; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * STAR_SIZE + 0.2,
+      speed: Math.random() * STAR_SPEED + 0.05
+    });
+  }
 }
 
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 15px 0;
-  z-index: 1000;
+function drawStars() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (let star of stars) {
+    ctx.beginPath();
+    ctx.arc(star.x, star.y, star.size, 0, 2 * Math.PI);
+    ctx.fillStyle = STAR_COLOR;
+    ctx.shadowColor = STAR_COLOR;
+    ctx.shadowBlur = 8;
+    ctx.fill();
+    ctx.closePath();
+  }
 }
 
-.menu {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin: 0;
-  padding: 0;
+function updateStars() {
+  for (let star of stars) {
+    star.y += star.speed;
+    if (star.y > canvas.height) {
+      star.x = Math.random() * canvas.width;
+      star.y = 0;
+    }
+  }
 }
 
-.menu li a {
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  transition: color 0.3s;
+function animate() {
+  drawStars();
+  updateStars();
+  requestAnimationFrame(animate);
 }
 
-.menu li a:hover {
-  color: #00bcd4;
-}
+window.addEventListener('resize', () => {
+  resizeCanvas();
+  createStars();
+});
 
-main {
-  margin-top: 100px; /* keeps content below the header */
-  max-width: 800px;
-  padding: 20px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-section {
-  margin-bottom: 60px;
-}
+resizeCanvas();
+createStars();
+animate();

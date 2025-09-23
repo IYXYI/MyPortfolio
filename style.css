@@ -1,0 +1,69 @@
+/* Modern, clean portfolio style */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #0a192f;
+  color: #ccd6f6;
+}
+
+header {
+  background: rgba(10, 25, 47, 0.85);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+nav {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+}
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  justify-content: flex-end;
+  margin: 0;
+  padding: 0;
+}
+.menu a {
+  color: #64ffda;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.menu a:hover {
+  color: #fff;
+}
+main {
+  max-width: 900px;
+  margin: 120px auto 0 auto;
+  padding: 2rem;
+  background: rgba(10, 25, 47, 0.85);
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+}
+h2 {
+  color: #64ffda;
+  margin-top: 0;
+}
+ul {
+  padding-left: 1.2em;
+}
+section {
+  margin-bottom: 2.5rem;
+}
+@media (max-width: 600px) {
+  nav, main {
+    padding: 1rem;
+  }
+  .menu {
+    gap: 1rem;
+    font-size: 0.95em;
+  }
+  main {
+    margin-top: 80px;
+  }
+}
