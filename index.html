@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Portfolio</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 </head>
 <body>
   <!-- Background -->
@@ -29,8 +30,8 @@
     <section id="hero" class="hero">
       <img src="1571754382123.jpg" alt="My portrait" class="hero-img" />
       <div class="hero-content">
-        <h1>Hello, I'm <span class="highlight">Your Name</span></h1>
-        <p class="hero-intro">A passionate Software Engineer with expertise in web, backend, and DevOps. I love building beautiful, performant, and scalable solutions.</p>
+  <h1>Hello, I'm <span class="highlight">Nabil</span></h1>
+  <p class="hero-intro"><span id="typed-intro"></span></p>
       </div>
     </section>
 
@@ -69,5 +70,47 @@
   </main>
 
   <script src="index_stars_bckgrnd.js"></script>
+  <script>
+    // Animated typing effect for intro
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.Typed) {
+        new Typed('#typed-intro', {
+          strings: [
+            'A passionate Software Engineer.',
+            'Web, Backend, and DevOps specialist.',
+            'I love building beautiful, scalable solutions.'
+          ],
+          typeSpeed: 38,
+          backSpeed: 22,
+          backDelay: 1200,
+          loop: true,
+          showCursor: true
+        });
+      } else {
+        document.getElementById('typed-intro').textContent = 'A passionate Software Engineer.';
+      }
+    });
+
+    // Fade-in effect for sections
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in');
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('main section').forEach(section => {
+      section.classList.add('fade-init');
+      observer.observe(section);
+    });
+
+    // Interactive skill hover
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('#skills li').forEach(li => {
+        li.addEventListener('mouseenter', () => li.classList.add('skill-pop'));
+        li.addEventListener('mouseleave', () => li.classList.remove('skill-pop'));
+      });
+    });
+  </script>
 </body>
 </html>
