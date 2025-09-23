@@ -154,6 +154,11 @@
 
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script>
+    // Cursor-follow background effect
+    document.addEventListener('mousemove', function(e) {
+      document.body.style.setProperty('--cursor-x', e.clientX + 'px');
+      document.body.style.setProperty('--cursor-y', e.clientY + 'px');
+    });
     // Sidebar toggle for mobile
     document.getElementById('sidebarToggle').onclick = function() {
       document.getElementById('sidebar').classList.toggle('collapsed');

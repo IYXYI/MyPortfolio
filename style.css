@@ -1,3 +1,19 @@
+body::before {
+  content: '';
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(
+    180px 180px at var(--cursor-x, 50vw) var(--cursor-y, 50vh),
+    rgba(100,255,218,0.10) 0%,
+    rgba(10,25,47,0.0) 80%
+  );
+  transition: background 0.18s;
+}
 .exp-block {
   display: flex;
   flex-direction: column;
