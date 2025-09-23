@@ -10,66 +10,71 @@
 <body>
   <!-- Background -->
   <canvas id="index_stars_bckgrnd"></canvas>
-
   <script src="index_stars_bckgrnd.js" defer></script>
-  <!-- Navigation Menu -->
-  <header>
-    <nav>
-      <ul class="menu">
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#languages">Languages</a></li>
-        <li><a href="#studies">Studies</a></li>
-        <li><a href="#experience">Experience</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <!-- Sections -->
-  <main>
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-      <img src="1571754382123.jpg" alt="My portrait" class="hero-img" />
-      <div class="hero-content">
-  <h1>Hello, I'm <span class="highlight">Nabil</span></h1>
-  <p class="hero-intro"><span id="typed-intro"></span></p>
-      </div>
-    </section>
+  <div class="container">
+    <aside class="sidebar">
+      <img src="1571754382123.jpg" alt="Nabil portrait" class="sidebar-img" />
+      <h1 class="sidebar-name">Nabil</h1>
+      <nav class="sidebar-nav">
+        <a href="#hero">Home</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </aside>
+    <main class="main-content">
+      <!-- Hero Section -->
+      <section id="hero" class="hero">
+        <div class="hero-content">
+          <h2>Hello, I'm <span class="highlight">Nabil</span></h2>
+          <p class="hero-intro"><span id="typed-intro"></span></p>
+        </div>
+      </section>
 
-    <section id="skills">
-      <h2>💻 Skills</h2>
-      <ul>
-        <li>Web Development: HTML, CSS, JavaScript, React</li>
-        <li>Backend: Python, Flask, .NET</li>
-        <li>DevOps: Docker, Kubernetes, Terraform</li>
-        <li>Databases: PostgreSQL, MySQL, MongoDB</li>
-      </ul>
-    </section>
+      <section id="skills">
+        <h2>💻 Skills</h2>
+        <ul>
+          <li>Web Development: HTML, CSS, JavaScript, React</li>
+          <li>Backend: Python, Flask, .NET</li>
+          <li>DevOps: Docker, Kubernetes, Terraform</li>
+          <li>Databases: PostgreSQL, MySQL, MongoDB</li>
+        </ul>
+      </section>
 
-    <section id="languages">
-      <h2>🌍 Languages</h2>
-      <ul>
-        <li>Arabic (Native)</li>
-        <li>French (Fluent)</li>
-        <li>English (Fluent)</li>
-        <li>German (Basic)</li>
-      </ul>
-    </section>
+      <section id="projects">
+        <h2>🚀 Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card">
+            <h3>Portfolio Website</h3>
+            <p>Modern, interactive portfolio with animated background and GitHub Actions deployment.</p>
+            <a href="#" class="project-link">View Project</a>
+          </div>
+          <div class="project-card">
+            <h3>DevOps Toolkit</h3>
+            <p>Automated infrastructure management using Docker, Kubernetes, and Terraform.</p>
+            <a href="#" class="project-link">View Project</a>
+          </div>
+        </div>
+      </section>
 
-    <section id="studies">
-      <h2>🎓 Studies</h2>
-      <p>Engineering & Master’s in Computer Science (France)</p>
-    </section>
+      <section id="experience">
+        <h2>💼 Experience</h2>
+        <ul>
+          <li>Orange Business – Software Engineer (3 years)</li>
+          <li>Internships & Projects in Software Development</li>
+        </ul>
+      </section>
 
-    <section id="experience">
-      <h2>💼 Experience</h2>
-      <ul>
-        <li>Orange Business – Software Engineer (3 years)</li>
-        <li>Internships & Projects in Software Development</li>
-      </ul>
-    </section>
-  </main>
+      <section id="contact">
+        <h2>📬 Contact</h2>
+        <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+      </section>
+    </main>
+  </div>
 
-  <script src="index_stars_bckgrnd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script>
     // Animated typing effect for intro
     document.addEventListener('DOMContentLoaded', function() {
