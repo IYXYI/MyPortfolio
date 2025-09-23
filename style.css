@@ -1,3 +1,35 @@
+.exp-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-bottom: 1.2rem;
+  background: #112240;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(100,255,218,0.07);
+  padding: 1.1rem 1rem;
+  transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+  cursor: pointer;
+}
+.exp-block:hover {
+  background: #1a2a4f;
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 6px 32px rgba(100,255,218,0.13);
+}
+.exp-block h3 {
+  margin: 0 0 0.2rem 0;
+  font-size: 1.1rem;
+  color: #64ffda;
+}
+.exp-block .exp-date {
+  font-size: 0.98rem;
+  color: #a8b2d1;
+  margin-left: 0;
+}
+.exp-block p {
+  margin: 0.2rem 0 0 0;
+  font-size: 1.01rem;
+  color: #ccd6f6;
+}
 /* Skills logos */
 .skills-logos {
   display: flex;
