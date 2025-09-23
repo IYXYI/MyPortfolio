@@ -34,7 +34,7 @@
       <section id="about" class="hero">
         <div class="hero-content">
           <h2>Hello, I'm <span class="highlight">Nabil Drissi El Bouzaidi</span></h2>
-          <p class="hero-intro">Experienced Embedded Systems Engineer with 2+ years in the automotive industry. Skilled in microcontroller programming, software testing, and industrial IT. Proficient in industrial communication protocols (Modbus, CAN, Ethernet/IP). Open to new opportunities to contribute to innovative projects.</p>
+          <p class="hero-intro"><span id="typed-intro"></span></p>
           <div class="about-links">
             <a href="mailto:drissielbouzaidi.nabil@gmail.com">drissielbouzaidi.nabil@gmail.com</a> |
             <a href="https://www.linkedin.com/in/nabil-drissi-elbouzaidi-8039b5104" target="_blank">LinkedIn</a> |
@@ -143,20 +143,23 @@
 
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script>
+
     // Sidebar toggle for mobile
     document.getElementById('sidebarToggle').onclick = function() {
       document.getElementById('sidebar').classList.toggle('collapsed');
       document.getElementById('sidebarNav').classList.toggle('show');
     };
 
-    // Animated typing effect for intro
+    // Animated typing effect for intro (improved, more personal)
     document.addEventListener('DOMContentLoaded', function() {
       if (window.Typed) {
         new Typed('#typed-intro', {
           strings: [
-            'Experienced Embedded Systems Engineer.',
-            'Automotive, Industrial IT, Microcontrollers.',
-            'Open to new opportunities!'
+            "I'm a creative problem solver.",
+            "I love to find solutions to complex challenges.",
+            "Passionate about embedded systems and industrial IT.",
+            "I build, I automate, I innovate.",
+            "Let's create something amazing together!"
           ],
           typeSpeed: 38,
           backSpeed: 22,
@@ -165,21 +168,24 @@
           showCursor: true
         });
       } else {
-        document.getElementById('typed-intro').textContent = 'Experienced Embedded Systems Engineer.';
+        document.getElementById('typed-intro').textContent = "I'm a creative problem solver.";
       }
     });
 
+
     // Fade-in effect for sections
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('fade-in');
-        }
-      });
-    }, { threshold: 0.15 });
+    if (!window._sectionObserver) {
+      window._sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+          }
+        });
+      }, { threshold: 0.15 });
+    }
     document.querySelectorAll('main section').forEach(section => {
       section.classList.add('fade-init');
-      observer.observe(section);
+      window._sectionObserver.observe(section);
     });
 
     // Interactive skill hover
