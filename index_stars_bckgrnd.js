@@ -6,7 +6,7 @@ let stars = [];
 const STAR_COUNT = 120;
 const STAR_COLOR = '#ccd6f6';
 const STAR_SIZE = 1.2;
-const STAR_SPEED = 0.15;
+const STAR_SPEED = 0.45;
 
 function resizeCanvas() {
   canvas.width = window.innerWidth;

@@ -155,9 +155,19 @@
   <script>
     // Custom animated glowing cursor
     const cursor = document.getElementById('custom-cursor');
-    document.addEventListener('mousemove', function(e) {
+    function updateCursor(e) {
+      cursor.style.display = 'block';
       cursor.style.transform = `translate(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%))`;
-    });
+    }
+    function hideCursor() {
+      cursor.style.display = 'none';
+    }
+    document.addEventListener('mousemove', updateCursor);
+    document.addEventListener('mouseleave', hideCursor);
+    document.addEventListener('mouseenter', updateCursor);
+    // Hide cursor on touch devices
+    document.addEventListener('touchstart', hideCursor);
+    document.addEventListener('touchend', hideCursor);
     // Cursor-follow background effect
     document.addEventListener('mousemove', function(e) {
       document.body.style.setProperty('--cursor-x', e.clientX + 'px');
