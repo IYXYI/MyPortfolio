@@ -67,3 +67,57 @@ section {
     margin-top: 80px;
   }
 }
+
+/* Hero Section */
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+  background: rgba(10, 25, 47, 0.95);
+  border-radius: 16px;
+  box-shadow: 0 6px 32px rgba(0,0,0,0.18);
+  padding: 2.5rem 2rem;
+}
+.hero-img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #64ffda;
+  box-shadow: 0 2px 16px rgba(100,255,218,0.15);
+  background: #112240;
+}
+.hero-content {
+  flex: 1;
+}
+.hero h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2.2rem;
+  color: #fff;
+}
+.highlight {
+  color: #64ffda;
+}
+.hero-intro {
+  font-size: 1.15rem;
+  color: #a8b2d1;
+  margin: 0;
+}
+
+@media (max-width: 700px) {
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 1.2rem;
+    padding: 1.5rem 1rem;
+  }
+  .hero-img {
+    width: 110px;
+    height: 110px;
+  }
+  .hero h1 {
+    font-size: 1.4rem;
+  }
+}
